@@ -216,20 +216,26 @@
 	function agregar(){
 		
 		//obteniendo costo cantidad comprada a ese precio y id del insumo
-		let insumoNombre=$("#pidinsumo option:selected").text();
-		let insumo=$("#pidinsumo option:selected").val();
+		var insumoNombre=$("#pidinsumo option:selected").text();
+		var insumo=$("#pidinsumo option:selected").val();
+		if(insumo!="" && insumo!=null && insumo!="seleccione" ){
 		let arrIdCostoCantidad=insumo.split("-");
-		let id=parseInt(arrIdCostoCantidad[0]);
-		let costo=parseInt(arrIdCostoCantidad[1]);
-		let cantidad=parseInt(arrIdCostoCantidad[2]);
+		var id=parseInt(arrIdCostoCantidad[0]);
+		var costo=parseInt(arrIdCostoCantidad[1]);
+		var cantidad=parseInt(arrIdCostoCantidad[2]);
+		}else{
+			insumoNombre="";
+		}
+	
 		// fin del spplit
 		// calculando costo por cantidad agregada
 		let cant=$("#pcantidad").val();// cantidad a usar del insumo en el producto
-		let precioPorUnidad=costo/cantidad;
-		let costoUsado=parseFloat(precioPorUnidad)*parseFloat(cant);
+		
 		// fin calculo
 		let datos="";//variable para los td
 		if(id!="" && !isNaN(id) && insumoNombre!="" && cant!="" && parseFloat(cant)>0){
+			let precioPorUnidad=costo/cantidad;
+			let costoUsado=parseFloat(precioPorUnidad)*parseFloat(cant);
 			subtotal[cont]=costoUsado;
 			total+=subtotal[cont];
 			//solo para ordenarme parto las filas
@@ -248,7 +254,11 @@
 			evaluar();
 			cont++;
 		}else{
-			alert('error revise detalles id="'+id+'",insumo="'+insumoNombre+'",cant="'+cant+'",parseFloat="'+parseFloat(cant)+'"');
+			Swal.fire(
+		  					'Error',
+		  					'rellene los campos por favor',
+		  					'error'
+						);
 
 		}
 

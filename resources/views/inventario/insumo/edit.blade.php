@@ -29,7 +29,7 @@
 	<div class="col-md-6 col-xs-12">
 		<div class="form-group">
 			<label for="descripcion">Descripcion</label>
-			<input type="text" name="descripcion" class="form-control" required value="{{$insumo->descripcion}}">
+			<input type="text" name="descripcion" class="form-control"  value="{{$insumo->descripcion}}">
 		</div>
 	</div>
 		<div class="col-md-6 col-xs-12">
