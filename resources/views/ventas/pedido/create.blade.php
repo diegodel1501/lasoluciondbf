@@ -46,8 +46,7 @@
 								<div class="form-group">
 									<label for="fechaentrega">Fecha De Entrega</label>
 									<div class="input-group date" data-provide="datepicker" data-date-format="mm/dd/yyyy">
-										<input class="date form-control"  type="text" id="datepicker" name="fechaentrega">
-
+										<input class="date form-control" readonly="true"  type="text" id="datepicker" name="fechaentrega">
 										<div class="input-group-addon">
 											<i class="fa fa-circle-o"></i>
 										</div>
@@ -125,7 +124,13 @@
 @push('scripts')
   <script>
   $( function() {
-    $( "#datepicker" ).datepicker();
+  	$.datepicker.setDefaults($.datepicker.regional["es"]);
+    $( "#datepicker" ).datepicker({
+    	firstDay: 1,
+    	minDate: "-0D",
+		maxDate: "+2M",
+    	changeMonth: true,
+    });
 
     evaluar();
   } );

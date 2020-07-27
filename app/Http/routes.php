@@ -37,3 +37,11 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+//Reportes
+Route::get('/vendedores', 'ReporteController@vendedores');
+Route::get('/panaderos', 'ReporteController@panaderos');
+Route::get('/clientes', 'ReporteController@clientes');
+Route::get('/estadisticas', 'ReporteController@estadisticas');
+
+
+

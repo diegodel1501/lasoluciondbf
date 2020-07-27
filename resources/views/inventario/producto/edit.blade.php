@@ -245,13 +245,13 @@
 		let insumo=$("#pidinsumo option:selected").val();
 		let arrIdCostoCantidad=insumo.split("-");
 		let id=parseInt(arrIdCostoCantidad[0]);
-		let costo=parseInt(arrIdCostoCantidad[1]);
-		let cantidad=parseInt(arrIdCostoCantidad[2]);
+		let costo=parseFloat(arrIdCostoCantidad[1]);
+		let cantidad=parseFloat(arrIdCostoCantidad[2]);
 		// fin del spplit
 		// calculando costo por cantidad agregada
 		let cant=$("#pcantidad").val();// cantidad a usar del insumo en el producto
 		let precioPorUnidad=costo/cantidad;
-		let costoUsado=parseInt(precioPorUnidad)*parseInt(cant);
+		let costoUsado=parseFloat(precioPorUnidad)*parseFloat(cant);
 		// fin calculo
 		let datos="";//variable para los td
 		if(id!="" && !isNaN(id) && insumoNombre!="" && cant!="" && parseFloat(cant)>0){

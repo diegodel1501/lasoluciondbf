@@ -90,7 +90,7 @@
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-laptop"></i>
-                <span>ingresos</span>
+                <span>Ingresos</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -115,11 +115,10 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href=""><i class="fa fa-circle-o"></i> Empleados</a></li>
-                <li><a href=""><i class="fa fa-circle-o"></i> Panaderos</a></li>
-                <li><a href=""><i class="fa fa-circle-o"></i> Clientes</a></li>
-                <li><a href=""><i class="fa fa-circle-o"></i> Pedidos</a></li>
-                <li><a href=""><i class="fa fa-circle-o"></i> estadisticas</a></li>
+                <li><a href="/vendedores"><i class="fa fa-circle-o"></i> Vendedores</a></li>
+                <li><a href="/panaderos"><i class="fa fa-circle-o"></i> Panaderos</a></li>
+                <li><a href="/clientes"><i class="fa fa-circle-o"></i> Clientes</a></li>
+                <li><a href="/estadisticas"><i class="fa fa-circle-o"></i> Estadisticas</a></li>
 
 
               </ul>
@@ -175,7 +174,9 @@
     <!-- jQuery 2.1.4 -->
     <script src="{{asset('js/jQuery-2.1.4.min.js')}}"></script>
     <script src="{{asset('js/jquery-ui.js')}}"></script>
+    <script src="{{asset('js/datepicker.js')}}"></script>
     <script src="{{asset('js/sweetalert2@9.js')}}"></script>
+       <script src="{{asset('js/loader.js')}}"></script>
     @stack('scripts')
    
     <!-- Bootstrap 3.3.5 -->
@@ -253,7 +254,7 @@
     </div>
 </div>
     </body>
-<div class="container">
+<div class="container" hidden="hidden">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">

@@ -23,7 +23,13 @@ $this->middleware('auth');
          
         if($request){
             $query=trim($request->get('searchText'));
-            $pedidos= DB::table('pedido as p')->join('detalle_pedido as d','p.idpedido','=','d.idpedido')->join('producto as pr','d.idproducto','=','pr.idproducto')->select('p.idpedido','p.idvendedor','p.idcliente','p.idpanadero','P.fechacreacion','p.fechaentrega','p.estado',DB::raw('sum(d.cantidad*pr.valor) as total'))->where('p.idpedido','LIKE','%'.$query.'%')->orderBy('p.idpedido','desc')->groupBy('p.idpedido','p.idvendedor','p.idcliente','p.idpanadero','P.fechacreacion','p.fechaentrega','p.estado')->paginate(3);
+            $pedidos= DB::table('pedido as p')
+            ->join('detalle_pedido as d','p.idpedido','=','d.idpedido')
+            ->join('producto as pr','d.idproducto','=','pr.idproducto')
+            ->select('p.idpedido','p.idvendedor','p.idcliente','P.fechacreacion','p.fechaentrega','p.estado',DB::raw('sum(d.cantidad*pr.valor) as total'))
+            ->where('p.idpedido','LIKE','%'.$query.'%')->orderBy('p.idpedido','desc')
+            ->groupBy('p.idpedido','p.idvendedor','p.idcliente','P.fechacreacion','p.fechaentrega','p.estado')
+            ->paginate(3);
                 $vendedores =DB::table('persona')->where('tipo_persona','=','vendedor')->get();
                 $clientes =DB::table('persona')->where('tipo_persona','=','cliente')->get();
                 $panaderos =DB::table('persona')->where('tipo_persona','=','panadero')->get();
@@ -80,7 +86,13 @@ $this->middleware('auth');
 
     public function show($id){
 
-    	$pedido=DB::table('pedido as p')->join('detalle_pedido as d','p.idpedido','=','d.idpedido')->join('producto as pr','d.idproducto','=','pr.idproducto')->select('p.idpanadero','p.idvendedor','p.idcliente','p.idpedido','P.fechacreacion','p.fechaentrega','p.estado',DB::raw('sum(d.cantidad*pr.valor) as total'))->where('p.idpedido','=',$id)->groupBy('p.idpanadero','p.idvendedor','p.idcliente','p.idpedido','P.fechacreacion','p.fechaentrega','p.estado')->first();
+    	$pedido=DB::table('pedido as p')
+        ->join('detalle_pedido as d','p.idpedido','=','d.idpedido')
+        ->join('producto as pr','d.idproducto','=','pr.idproducto')
+        ->select('p.idvendedor','p.idcliente','p.idpedido','P.fechacreacion','p.fechaentrega','p.estado',DB::raw('sum(d.cantidad*pr.valor) as total'))
+        ->where('p.idpedido','=',$id)
+        ->groupBy('p.idvendedor','p.idcliente','p.idpedido','P.fechacreacion','p.fechaentrega','p.estado')
+        ->first();
 
     	$detalles=DB::table('producto as p')->join('detalle_pedido as d','p.idproducto','=','d.idproducto')->select('p.nombre','idpanadero as idpanaderoA','d.cantidad','p.valor','p.tiempoelaboracion')->where('d.idpedido','=',$id)->get();
         $panaderos=DB::table('persona')->select('idPersona as idpanaderoB','nombre')->where('tipo_persona','=','panadero')->get();

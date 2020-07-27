@@ -57,7 +57,7 @@ $this->middleware('auth');
 
     }//para editar 
     public function update(PersonaFormRequest $request, $id){
-        $persona = new Persona;
+        $persona =Persona::findOrFail($id);
         $persona->nombre=$request->get('nombre');
         $persona->documento=$request->get('documento');
         $persona->direccion=$request->get('direccion');
