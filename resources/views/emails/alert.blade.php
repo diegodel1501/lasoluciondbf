@@ -7,7 +7,7 @@
 <body>
 	<h2>Esta es una alerta automatica</h2>
 	<div>
-		la fecha del pedido {{$id}} , esta proximo a terminar por favor prepare lo necesario:
+		la fecha del pedido {{$id}} , esta proximo a terminar: {{$fecha}} por favor prepare lo necesario:
 	</div>
 	<div>
 		@foreach($insumos as $i)

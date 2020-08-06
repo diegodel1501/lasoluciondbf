@@ -84,13 +84,14 @@
                 <li><a href="{{route('producto.index')}}"><i class="fa fa-circle-o"></i> Productos</a></li>
                 <li><a href="{{route('categoria.index')}}"><i class="fa fa-circle-o"></i> Categorias</a></li>
                  <li><a href="{{route('insumo.index')}}"><i class="fa fa-circle-o"></i> Insumos</a></li>
+                 <li><a href="{{URL::action('InsumoController@anadir')}}"><i class="fa fa-circle-o"></i>Ingresar compra insumos</a></li>
 
               </ul>
             </li>  
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-laptop"></i>
-                <span>Ingresos</span>
+                <span>Ingreso de pedidos</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -101,7 +102,7 @@
               <li class="treeview">
               <a href="#">
                 <i class="fa fa-laptop"></i>
-                <span>Administracion</span>
+                <span>Admin. de Empleados</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -111,16 +112,15 @@
              <li class="treeview">
               <a href="#">
                 <i class="fa fa-laptop"></i>
-                <span>Reportes</span>
+                <span>Reportes de pedidos</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="/vendedores"><i class="fa fa-circle-o"></i> Vendedores</a></li>
-                <li><a href="/panaderos"><i class="fa fa-circle-o"></i> Panaderos</a></li>
-                <li><a href="/clientes"><i class="fa fa-circle-o"></i> Clientes</a></li>
-                <li><a href="/estadisticas"><i class="fa fa-circle-o"></i> Estadisticas</a></li>
-
-
+                 <li><a href="{{URL::action('ReporteController@fechas')}}"><i class="fa fa-circle-o"></i> por fechas</a></li>
+                <li><a href="{{URL::action('ReporteController@vendedores')}}"><i class="fa fa-circle-o"></i> por vendedores</a></li>
+                <li><a href="{{URL::action('ReporteController@panaderos')}}"><i class="fa fa-circle-o"></i> por panaderos</a></li>
+                <li><a href="{{URL::action('ReporteController@clientes')}}"><i class="fa fa-circle-o"></i> por clientes</a></li>
+                <li><a href="{{URL::action('ReporteController@estadisticas')}}"><i class="fa fa-circle-o"></i> Estadisticas</a></li>
               </ul>
             </li>      
         </section>
@@ -197,7 +197,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Ingreso</div>
+                <div class="panel-heading">Ingreso Sistema de Pedidos "La Solucion"</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
@@ -254,84 +254,7 @@
     </div>
 </div>
     </body>
-<div class="container" hidden="hidden">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
-                        {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
-
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i> Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
    @endif
    
 </html>

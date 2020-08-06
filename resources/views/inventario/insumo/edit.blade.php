@@ -32,12 +32,6 @@
 			<input type="text" name="descripcion" class="form-control"  value="{{$insumo->descripcion}}">
 		</div>
 	</div>
-		<div class="col-md-6 col-xs-12">
-		<div class="form-group">
-			<label for="stock">Stock</label>
-			<input type="text" name="stock" class="form-control" value="{{$insumo->stock}}">
-		</div>
-	</div>
 	<div class="col-md-4 col-xs-12">
 		<div class="form-group">
 			<label for="imagen">Imagen</label>

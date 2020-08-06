@@ -23,11 +23,19 @@ $this->middleware('auth');
          
         if($request){
             $query=trim($request->get('searchText'));
+            $persona=DB::table('persona')->select('idPersona')->where('nombre','LIKE','%'.$query.'%')->get();
+            $arrayDetalle = Array();
+           foreach ($persona as $p) {
+            $arrayDetalle[]=$p->idPersona;
+           }
             $pedidos= DB::table('pedido as p')
             ->join('detalle_pedido as d','p.idpedido','=','d.idpedido')
             ->join('producto as pr','d.idproducto','=','pr.idproducto')
             ->select('p.idpedido','p.idvendedor','p.idcliente','P.fechacreacion','p.fechaentrega','p.estado',DB::raw('sum(d.cantidad*pr.valor) as total'))
-            ->where('p.idpedido','LIKE','%'.$query.'%')->orderBy('p.idpedido','desc')
+            ->where('p.idpedido','LIKE','%'.$query.'%')
+            ->orwherein('p.idcliente', $arrayDetalle)
+            ->orwherein('p.idvendedor', $arrayDetalle)
+            ->orderBy('p.idpedido','desc')
             ->groupBy('p.idpedido','p.idvendedor','p.idcliente','P.fechacreacion','p.fechaentrega','p.estado')
             ->paginate(3);
                 $vendedores =DB::table('persona')->where('tipo_persona','=','vendedor')->get();
@@ -49,10 +57,13 @@ $this->middleware('auth');
 
     	try {
     		DB::beginTransaction();
+            $fechaentrega = $request->get('fechaentrega');
+            $list = explode('/', $fechaentrega);
+            $fechaentrega=$list[2].'-'.$list[0].'-'.$list[1];
     		$pedido = new Pedido;
     		$pedido->idcliente=$request->get('idcliente');
     		$pedido->idvendedor=$request->get('idvendedor');
-    		$pedido->fechaentrega=$request->get('fechaentrega');
+    		$pedido->fechaentrega=$fechaentrega;
             // establecemos la ultima alerta del pedido ayer para enviar cada dia una alerta desde que falten 3 dias
             $pedido->ultimaalerta=strtotime("-1 days");
     		$fecha=Carbon::now('America/Santiago');

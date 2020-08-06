@@ -33,6 +33,9 @@ Route::resource(
 Route::post(
 'insumo.add','InsumoController@add'
 );
+Route::get(
+'/insumos','InsumoController@anadir'
+);
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
@@ -41,6 +44,14 @@ Route::get('/home', 'HomeController@index');
 Route::get('/vendedores', 'ReporteController@vendedores');
 Route::get('/panaderos', 'ReporteController@panaderos');
 Route::get('/clientes', 'ReporteController@clientes');
+Route::post('/fechas', 'ReporteController@fechas');
+Route::get('/fechas', 'ReporteController@fechas');
+Route::get('/verV/{id}', 'ReporteController@verV');
+Route::post('/verVfechas', 'ReporteController@verVfechas');
+Route::get('/verC/{id}', 'ReporteController@verC');
+Route::post('/verCfechas', 'ReporteController@verCfechas');
+Route::get('/verP/{id}', 'ReporteController@verP');
+Route::post('/verPfechas', 'ReporteController@verPfechas');
 Route::get('/estadisticas', 'ReporteController@estadisticas');
 
 

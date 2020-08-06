@@ -42,6 +42,7 @@ class HomeController extends Controller
                          // $data va a la vista 
                        $data=array(
                         'id' => $pedido->idpedido ,
+                        'fecha'=>$pedido->fechaentrega,
                         'insumos'=>DB::table("detalle_pedido")->select('idproducto','cantidad')->where('idpedido','=',$pedido->idpedido)->get(),
                         'productos'=>DB::table("producto")->select('idproducto','nombre')->get()
 
@@ -57,7 +58,7 @@ class HomeController extends Controller
 
                    } catch (\Exception $e) {
                        echo'<script type="text/javascript">
-                       alert("error al enviar el correo electronico");
+                       alert("error al enviar el correo electronico,el pedido'.$pedido->idpedido.' no fue enviado y tiene fecha de entrega: '.$pedido->fechaentrega.', revise certificados de seguridad o contacte con el administrador de la WEB.");
                        </script>';
                    }
                }

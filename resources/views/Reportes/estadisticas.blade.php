@@ -35,7 +35,6 @@
                   <h3 class="box-title">Productos mas pedidos</h3>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    
                     <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                   </div>
                 </div>
@@ -69,9 +68,9 @@
        let dat;
        @foreach($pedidos as $p)
        date="{{$p->fechaentrega}}";
-       	dat=date.split("/");
+       	dat=date.split("-");
        dataTable.addRows([
-       	[ new Date(dat[2],dat[0],dat[1]), {{$p->total}} ],]);
+       	[ new Date(dat[0],dat[1]-1,dat[2]), {{$p->total}} ],]);
        	@endforeach
 
        var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
@@ -79,7 +78,7 @@
        var options = {
          title: "Pedidos Historicos",
          animation: {"startup": true},
-         height: 250,
+         height: 350,
        };
 
        chart.draw(dataTable, options);

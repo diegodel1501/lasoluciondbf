@@ -49,7 +49,21 @@ $this->middleware('auth');
         $persona->email=$request->get('email');
         $persona->estado='activo';
         $persona->save();// recordar manejar save
-        return Redirect::to('empleado');
+
+        if($request->accessselect=="con"){
+            // asignar usuario 
+            if($persona->tipo_persona=="panadero"){
+                // dar accesos de panadero
+            $persona->iduser=2;
+            }
+            else{
+                // dar accesos de vendedor
+            $persona->iduser=3;
+            }  
+            $persona->update();  
+        }
+             return Redirect::to('empleado'); 
+        
 		
     }//para guardar un objeto en la bd
 

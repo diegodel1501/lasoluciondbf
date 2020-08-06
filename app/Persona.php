@@ -17,7 +17,8 @@ class Persona extends Model
     	'documento',
     	'direccion',
     	'telefono',
-    	'email'
+    	'email',
+      'usuario'
     ]; // campos asignables al modelo, para mas campos usar $guarded=[];
 
 }

@@ -21,7 +21,6 @@ $this->middleware('auth');
             $query=trim($request->get('searchText'));
             $insumos=  DB::table('insumo')->where('nombre','LIKE','%'.$query.'%')->where('estado','=','activo')->orderBy('idinsumo','desc')->paginate(3);
             return view('inventario.insumo.index',["insumos"=>$insumos, "searchText"=>$query]);
-
             }
     }// para mostrar la pagina inicial 
     public function create(){
@@ -40,8 +39,12 @@ $this->middleware('auth');
             }
         $insumo->estado='activo';
         $insumo->save();// recordar manejar save
-        return Redirect::to('insumo/create');
+        return Redirect::to('insumo');
     }//para guardar un objeto en la bd
+    public function anadir(){
+          $insumos=DB::table('insumo')->where('estado','=','activo')->get();
+            return view("inventario.insumo.Añadir",["insumos"=>$insumos]);
+    }
     public function add(InsumoDFormRequest $request){
         $insumo=Insumo::findOrFail($request->get('idinsumo'));
         $insumo->stock=$insumo->stock+$request->get('cantidad');
