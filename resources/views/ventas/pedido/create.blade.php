@@ -26,7 +26,7 @@
 									<select name="idvendedor" class="form-control selectpicker " data-live-search="true">
 										<option value="" > seleccione </option>
 										@foreach ($vendedores as $v)
-										<option value="{{$v->idPersona}}"> {{$v->nombre}} </option>
+										<option value="{{$v->id}}"> {{$v->nombre}} </option>
 										@endforeach
 									</select>
 								</div>
@@ -37,7 +37,7 @@
 									<select name="idcliente" class="form-control selectpicker" data-live-search="true">
 										<option value=""> seleccione </option>
 										@foreach ($clientes as $c)
-										<option value="{{$c->idPersona}}"> {{$c->nombre}} </option>
+										<option value="{{$c->id}}"> {{$c->nombre}} </option>
 										@endforeach
 									</select>
 								</div>
@@ -62,7 +62,7 @@
 									<select name="idpanadero" id="idpanadero" class="form-control selectpicker" data-live-search="true">
 										<option value=""> seleccione </option>
 										@foreach ($panaderos as $p)
-										<option value="{{$p->idPersona}}"> {{$p->nombre}} </option>
+										<option value="{{$p->id}}"> {{$p->nombre}} </option>
 										@endforeach
 									</select>
 								</div>

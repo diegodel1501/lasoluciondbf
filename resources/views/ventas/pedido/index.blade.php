@@ -24,13 +24,13 @@
  						<td>{{$p->idpedido}}</td>
  						<td>
  							@foreach($vendedores as $v)
- 							@if($p->idvendedor == $v->idPersona)
+ 							@if($p->idvendedor == $v->id)
  							{{$v->nombre}}
  							@endif
  							@endforeach
  						</td>
  						<td>@foreach($clientes as $c)
- 							@if($p->idcliente == $c->idPersona)
+ 							@if($p->idcliente == $c->id)
  							{{$c->nombre}}
  							@endif
  							@endforeach

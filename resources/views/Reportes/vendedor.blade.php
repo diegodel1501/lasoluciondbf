@@ -30,7 +30,7 @@
  						<td>{{$v->nombre}}</td>
  						<td>{{$v->documento}}</td>
  						<td>{{$v->pedidos}}</td>
- 						<td><a href="{{URL::action('ReporteController@verV',$v->idpersona)}}"><button class="btn btn-info">ver</button></a></td>
+ 						<td><a href="{{URL::action('ReporteController@verV',$v->id)}}"><button class="btn btn-info">ver</button></a></td>
  					</tr>
 
  					@endforeach

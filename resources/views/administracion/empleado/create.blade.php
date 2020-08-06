@@ -59,6 +59,13 @@
 										<option value="vendedor">Vendedor</option>
 									</select>
 								</div>
+
+							</div>
+							<div class="col-md-6 col-xs-12">
+								<div class="form-group">
+									<label for="password">Contraseña</label>
+									<input type="password" name="password" class="form-control" required >
+								</div>
 							</div>
 							</div>
 						</div>

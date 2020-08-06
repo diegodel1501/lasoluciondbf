@@ -7,6 +7,7 @@ use LaSolucion\Persona;
 use Illuminate\Support\Facades\Redirect;
 use LaSolucion\Http\Requests\PersonaFormRequest;
 use DB;
+use Illuminate\Support\Facades\Hash;
 class ClienteController extends Controller
 {
   
@@ -19,7 +20,7 @@ $this->middleware('auth');
          
         if($request){
             $query=trim($request->get('searchText'));
-            $personas= DB::table('persona')->where('nombre','LIKE','%'.$query.'%')->where('estado','=','activo')->where('tipo_persona','=','cliente')->orwhere('documento','LIKE','%'.$query.'%')->where('estado','=','activo')->where('tipo_persona','=','cliente')->orderBy('idPersona','desc')->paginate(3);
+            $personas= DB::table('users')->where('nombre','LIKE','%'.$query.'%')->where('estado','=','activo')->where('tipo_persona','=','cliente')->orwhere('documento','LIKE','%'.$query.'%')->where('estado','=','activo')->where('tipo_persona','=','cliente')->orderBy('id','desc')->paginate(3);
             return view('ventas.cliente.index',["personas"=>$personas, "searchText"=>$query]);
             }
     }// para mostrar la pagina inicial 
@@ -39,6 +40,11 @@ $this->middleware('auth');
         $persona->telefono=$request->get('telefono');
         $persona->email=$request->get('email');
         $persona->estado='activo';
+         if($request->get('password')){
+            $persona->password=Hash::make($request->get('password'));
+        }else{
+             $persona->password="sin acceso";
+        }
         $persona->save();// recordar manejar save
         return Redirect::to('cliente');
 
@@ -64,6 +70,9 @@ $this->middleware('auth');
         $persona->telefono=$request->get('telefono');
         $persona->email=$request->get('email');
         $persona->estado='activo';
+         if($request->get('password')!=""){
+            $persona->password=Hash::make($request->get('password'));
+        }
         $persona->update();
         return Redirect::to('cliente');
 

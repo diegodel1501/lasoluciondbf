@@ -23,10 +23,10 @@ $this->middleware('auth');
          
         if($request){
             $query=trim($request->get('searchText'));
-            $persona=DB::table('persona')->select('idPersona')->where('nombre','LIKE','%'.$query.'%')->get();
+            $persona=DB::table('users')->select('id')->where('nombre','LIKE','%'.$query.'%')->get();
             $arrayDetalle = Array();
            foreach ($persona as $p) {
-            $arrayDetalle[]=$p->idPersona;
+            $arrayDetalle[]=$p->id;
            }
             $pedidos= DB::table('pedido as p')
             ->join('detalle_pedido as d','p.idpedido','=','d.idpedido')
@@ -38,17 +38,17 @@ $this->middleware('auth');
             ->orderBy('p.idpedido','desc')
             ->groupBy('p.idpedido','p.idvendedor','p.idcliente','P.fechacreacion','p.fechaentrega','p.estado')
             ->paginate(3);
-                $vendedores =DB::table('persona')->where('tipo_persona','=','vendedor')->get();
-                $clientes =DB::table('persona')->where('tipo_persona','=','cliente')->get();
-                $panaderos =DB::table('persona')->where('tipo_persona','=','panadero')->get();
+                $vendedores =DB::table('users')->where('tipo_persona','=','vendedor')->get();
+                $clientes =DB::table('users')->where('tipo_persona','=','cliente')->get();
+                $panaderos =DB::table('users')->where('tipo_persona','=','panadero')->get();
             return view('ventas.pedido.index',["vendedores"=>$vendedores,'clientes'=>$clientes,"pedidos"=>$pedidos, "searchText"=>$query]);
             }
     }// para mostrar la pagina inicial 
 
     public function create(){
-    	$vendedores =DB::table('persona')->where('tipo_persona','=','vendedor')->get();
-    	$clientes =DB::table('persona')->where('tipo_persona','=','cliente')->get();
-        $panaderos =DB::table('persona')->where('tipo_persona','=','panadero')->get();
+    	$vendedores =DB::table('users')->where('tipo_persona','=','vendedor')->get();
+    	$clientes =DB::table('users')->where('tipo_persona','=','cliente')->get();
+        $panaderos =DB::table('users')->where('tipo_persona','=','panadero')->get();
     	$productos =DB::table('producto')->where('estado','=','activo')->get();
     	  return view("ventas.pedido.create",["vendedores"=>$vendedores,'clientes'=>$clientes,'panaderos'=>$panaderos,'productos'=>$productos]);
 
@@ -106,7 +106,7 @@ $this->middleware('auth');
         ->first();
 
     	$detalles=DB::table('producto as p')->join('detalle_pedido as d','p.idproducto','=','d.idproducto')->select('p.nombre','idpanadero as idpanaderoA','d.cantidad','p.valor','p.tiempoelaboracion')->where('d.idpedido','=',$id)->get();
-        $panaderos=DB::table('persona')->select('idPersona as idpanaderoB','nombre')->where('tipo_persona','=','panadero')->get();
+        $panaderos=DB::table('users')->select('id as idpanaderoB','nombre')->where('tipo_persona','=','panadero')->get();
         $vendedor=Persona::findOrFail($pedido->idvendedor);
         $cliente=Persona::findOrFail($pedido->idcliente);
     	return view("ventas.pedido.show",["pedido"=>$pedido,"productos"=>$detalles,'vendedor'=>$vendedor,'cliente'=>$cliente,'panaderos'=>$panaderos]);

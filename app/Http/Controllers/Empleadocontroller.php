@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use LaSolucion\Http\Requests\PersonaFormRequest;
 use Illuminate\Support\MessageBag;
 use DB;
+use Illuminate\Support\Facades\Hash;
 class Empleadocontroller extends Controller
 {
      public function __construct(){
@@ -19,7 +20,7 @@ $this->middleware('auth');
          
         if($request){
             $query=trim($request->get('searchText'));
-            $personas= DB::table('persona')->where('nombre','LIKE','%'.$query.'%')->where('estado','=','activo')->where('tipo_persona','=','panadero')->orwhere('documento','LIKE','%'.$query.'%')->where('estado','=','activo')->where('tipo_persona','=','panadero')->orwhere('nombre','LIKE','%'.$query.'%')->where('estado','=','activo')->where('tipo_persona','=','vendedor')->orwhere('documento','LIKE','%'.$query.'%')->where('estado','=','activo')->where('tipo_persona','=','vendedor')->orderBy('idPersona','desc')->paginate(3);
+            $personas= DB::table('users')->where('nombre','LIKE','%'.$query.'%')->where('estado','=','activo')->where('tipo_persona','=','panadero')->orwhere('documento','LIKE','%'.$query.'%')->where('estado','=','activo')->where('tipo_persona','=','panadero')->orwhere('nombre','LIKE','%'.$query.'%')->where('estado','=','activo')->where('tipo_persona','=','vendedor')->orwhere('documento','LIKE','%'.$query.'%')->where('estado','=','activo')->where('tipo_persona','=','vendedor')->orderBy('id','desc')->paginate(3);
             return view('administracion.empleado.index',["personas"=>$personas, "searchText"=>$query]);
             }
     }// para mostrar la pagina inicial 
@@ -47,21 +48,13 @@ $this->middleware('auth');
         $persona->direccion=$request->get('direccion');
         $persona->telefono=$request->get('telefono');
         $persona->email=$request->get('email');
+        if($request->get('password')){
+            $persona->password=Hash::make($request->get('password'));
+        }else{
+             $persona->password="sin acceso";
+        }
         $persona->estado='activo';
         $persona->save();// recordar manejar save
-
-        if($request->accessselect=="con"){
-            // asignar usuario 
-            if($persona->tipo_persona=="panadero"){
-                // dar accesos de panadero
-            $persona->iduser=2;
-            }
-            else{
-                // dar accesos de vendedor
-            $persona->iduser=3;
-            }  
-            $persona->update();  
-        }
              return Redirect::to('empleado'); 
         
 		
@@ -73,7 +66,6 @@ $this->middleware('auth');
 
     }//para mostrar
     public function edit($id){
-      
         return view("administracion.empleado.edit",["persona"=>Persona::findOrFail($id)]);
 
 
@@ -96,6 +88,10 @@ $this->middleware('auth');
         $persona->telefono=$request->get('telefono');
         $persona->email=$request->get('email');
         $persona->estado='activo';
+
+        if($request->get('password')!=""){
+            $persona->password=Hash::make($request->get('password'));
+        }
         $persona->update();
         return Redirect::to('empleado');
 

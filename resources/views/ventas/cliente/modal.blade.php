@@ -1,7 +1,7 @@
 
 
-<div class="modal fade" id="modal-delete-{{$p->idPersona}}">
- <form action="{{ route('cliente.destroy', $p->idPersona) }}" method="POST">
+<div class="modal fade" id="modal-delete-{{$p->id}}">
+ <form action="{{ route('cliente.destroy', $p->id) }}" method="POST">
   {{ method_field('DELETE') }}
   {{ csrf_field() }}
   <div class="modal-dialog">

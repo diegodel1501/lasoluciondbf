@@ -25,10 +25,10 @@ class PersonaFormRequest extends FormRequest
     {
         return [
        'nombre'=>'required|max:100',
-        'documento'=>'required|numeric|max:9999999990',
+        'documento'=>'required|max:9999999990',
         'direccion'=>'max:150',
         'telefono'=>'max:50',
-        'email'=>'max:50'
+        'email'=>'max:50',
         ];
     }
 }

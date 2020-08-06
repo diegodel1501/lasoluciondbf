@@ -20,15 +20,15 @@
  					</thead>
  					@foreach($personas as $p)
  					<tr>
- 						<td>{{$p->idPersona}}</td>
+ 						<td>{{$p->id}}</td>
  						<td>{{$p->nombre}}</td>
  						<td>{{$p->documento}}</td>
  						<td>{{$p->telefono}}</td>
  						<td>{{$p->email}}</td>
  						<td>{{$p->direccion}}</td>
  						<td>
- 							<a href="{{URL::action('ClienteController@edit',$p->idPersona)}}"><button class="btn btn-info">editar</button></a>
- 							<a href="" data-target="#modal-delete-{{$p->idPersona}}" data-toggle="modal"><button class="btn btn-danger">eliminar</button></a>
+ 							<a href="{{URL::action('ClienteController@edit',$p->id)}}"><button class="btn btn-info">editar</button></a>
+ 							<a href="" data-target="#modal-delete-{{$p->id}}" data-toggle="modal"><button class="btn btn-danger">eliminar</button></a>
  							@include('ventas.cliente.modal')
  						</td>
  					</tr>

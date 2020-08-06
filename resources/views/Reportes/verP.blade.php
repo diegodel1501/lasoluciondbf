@@ -8,7 +8,7 @@
 </div>
 	{!! Form::open(array('url'=>'verPfechas','id'=>'buscarfechas','method'=>'POST','autocomplete'=>'off')) !!}
 	{{Form::token()}}
-	<input type="hidden" name="idpanadero" value="{{$panadero->idPersona}}">
+	<input type="hidden" name="idpanadero" value="{{$panadero->id}}">
 <div class="row">
 	<div class="col col-md-3 col-xs-12">
 		<div class="form-check">
@@ -69,13 +69,13 @@
  					<tr>
  						<td>{{$p->idpedido}}</td>
  						<td>@foreach($clientes as $c)
- 							@if($p->idcliente == $c->idPersona)
+ 							@if($p->idcliente == $c->id)
  							{{$c->nombre}}
  							@endif
  							@endforeach
  						</td>
  						<td>@foreach($vendedores as $v)
- 							@if($p->idcliente == $v->idPersona)
+ 							@if($p->idcliente == $v->id)
  							{{$v->nombre}}
  							@endif
  							@endforeach

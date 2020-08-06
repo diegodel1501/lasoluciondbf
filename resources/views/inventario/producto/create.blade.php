@@ -86,7 +86,7 @@
 							</div>
 							<div class="col-md-6 col-xs-12">
 								<div class="form-group">
-									<label >cantidad</label>
+									<label >Cantidad (En kg, Lts o unidad(es)</label>
 									<input type="number" step="any" name="pcantidad" id="pcantidad" class="form-control" value="">
 									<input type="hidden" id="costototalinput" name="costo" value="">
 								</div>

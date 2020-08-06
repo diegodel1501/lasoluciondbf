@@ -22,7 +22,7 @@
  					<tr>
  						<td>{{$p->idpedido}}</td>
  						<td>@foreach($vendedores as $v)
- 							@if($p->idcliente == $v->idPersona)
+ 							@if($p->idcliente == $v->id)
  							{{$v->nombre}}
  							@endif
  							@endforeach

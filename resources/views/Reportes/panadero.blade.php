@@ -32,7 +32,7 @@
  						<td>{{$p->documento}}</td>
  						<td>{{$p->pedidos}}</td>
  						<td>{{$p->productos}}</td>
- 						<td><a href="{{URL::action('ReporteController@verP',$p->idPersona)}}"><button class="btn btn-info">ver</button></a></td>
+ 						<td><a href="{{URL::action('ReporteController@verP',$p->id)}}"><button class="btn btn-info">ver</button></a></td>
  					</tr>
 
  					@endforeach

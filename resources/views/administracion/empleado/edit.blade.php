@@ -14,7 +14,7 @@
 		@endif
 	</div>
 </div>
-					{!! Form::model($persona,['method'=>'PUT','route'=>['empleado.update',$persona->idPersona]]) !!}
+					{!! Form::model($persona,['method'=>'PUT','route'=>['empleado.update',$persona->id]]) !!}
 						{{Form::token()}}
 
 						<div class="row">
@@ -45,6 +45,12 @@
 								<div class="form-group">
 									<label for="telefono">Telefono</label>
 									<input type="text" name="telefono" class="form-control" value="{{$persona->telefono}}">
+								</div>
+							</div>
+							<div class="col-md-6 col-xs-12">
+								<div class="form-group">
+									<label for="password">Contraseña</label>
+									<input type="password" name="password" class="form-control"  >
 								</div>
 							</div>
 
@@ -81,7 +87,7 @@
 	<div class="col-md-6 col-xs-12">		
 		<div class="form-group">
 			<button class="btn btn-primary" class="form-control" type="submit">guardar</button>
-			<a href="{{route('cliente.index')}}" class="btn btn-danger">cancelar</a>
+			<a href="{{route('empleado.index')}}" class="btn btn-danger">cancelar</a>
 		</div>
 	</div>
 	{!! Form::close() !!}

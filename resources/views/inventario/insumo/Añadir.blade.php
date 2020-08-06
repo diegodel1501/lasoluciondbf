@@ -16,13 +16,13 @@
 	</div>
 	<div class="col-md-6 col-xs-12">
 		<div class="form-group">
-			<label for="cantidad">Cantidad</label>
+			<label for="cantidad">Cantidad (Kg, Lts, unidad(es)</label>
 			<input type="number" name="cantidad" class="form-control" required value="{{old('cantidad')}}">
 		</div>
 	</div>
 	<div class="col-md-6 col-xs-12">
 		<div class="form-group">
-			<label for="preciocompra">Precio de compra de la cantidad</label>
+			<label for="preciocompra">Precio de compra de la cantidad </label>
 			<input type="number" name="preciocompra" class="form-control" required value="{{old('preciocompra')}}">
 		</div>
 	</div>

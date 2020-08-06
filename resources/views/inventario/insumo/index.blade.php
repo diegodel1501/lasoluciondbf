@@ -14,7 +14,7 @@
  						<th>Nombre</th>
  						<th>Descripcion</th>
  						<th>Imagen</th>
- 						<th>Stock</th>
+ 						<th>total comprado</th>
  						<th>Opciones</th>
  					</thead>
  					@foreach($insumos as $i)

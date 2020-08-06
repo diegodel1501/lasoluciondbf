@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Persona extends Model
 {
    
-   protected $table='persona';
-   protected $primaryKey='idPersona';
-   public $timestamps=false;
+   protected $table='users';
+   protected $primaryKey='id';
+   public $timestamps=true;
 
     protected $fillable=[
     	'nombre',
@@ -18,7 +18,9 @@ class Persona extends Model
     	'direccion',
     	'telefono',
     	'email',
-      'usuario'
+      'password'
     ]; // campos asignables al modelo, para mas campos usar $guarded=[];
-
+protected $hidden = [
+        'password', 'remember_token',
+    ];
 }

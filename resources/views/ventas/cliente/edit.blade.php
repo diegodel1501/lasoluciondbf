@@ -14,7 +14,7 @@
 		@endif
 	</div>
 </div>
-					{!! Form::model($persona,['method'=>'PUT','route'=>['cliente.update',$persona->idPersona]]) !!}
+					{!! Form::model($persona,['method'=>'PUT','route'=>['cliente.update',$persona->id]]) !!}
 						{{Form::token()}}
 						<div class="row">
 							<div class="col-md-6 col-xs-12">
